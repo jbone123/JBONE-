@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>响应</title>
+</head>
+<body>
+    <!-- <div id='app'>{{arr[2]}}</div> -->
+    <!-- v-for 解决循环问题  更高效  会复用原有的结构 -->
+    <div id='app'>
+        <!-- v-on === @ -->
+        <!-- <div  @click="fn">click me</div> -->
+        <!-- 没有()会自动把event传递过去，有()需要加入$event和要传递的参数 -->
+         <!-- 如果不传递参数，则不用写()自动写入事件源，反之，则要手动传入$event属性 -->
+        <div  @click="fn($event,1)">click me2</div>
+    </div>
+
+</body>
+<script src='./vue.js'></script>
+<script>
+  
+    let vm = new Vue({ //根实例 
+        el:'#app',
+        methods:{
+            //method和data 中的数据会被放到vm上，而且名字不能冲突，冲突会报错
+            fn(event,a){
+                console.log(event,'event',a,'a')  // method中的this都是指向实例vm （根实例）
+            }
+        },
+
+        data: { //data当中的数据会被vm所代理
+           a: 1
+        }
+    }) 
+    
+     
+</script>
+</html>

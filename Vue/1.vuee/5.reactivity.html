@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>响应</title>
+</head>
+<body>
+    <!-- <div id='app'>{{arr[2]}}</div> -->
+    <div id='app'>{{arr}}</div>
+</body>
+<script src='./vue.js'></script>
+<script>
+    // 引入vue后会白给你一个vue构造函数
+    //vue会循环data中的数据(数据劫持), 依次增加getter和setter 
+    let vm = new Vue({
+        el:'#app',
+        data: { //data当中的数据会被vm所代理
+            arr: [1,2,3,4,5,6] 
+        }
+    }) 
+    // 错误代码，去改变数组中的某一项是监控不到的
+    // 错误： vm.arr[0]=100;    
+    // 错误： vm.arr.length -=2  //也不能使用改变数组长度的方法
+    // 变异方法（改变原数组）: pop push  shift unshift splice reserve sort
+    vm.arr = vm.arr.map(item=>item *=3)
+     
+</script>
+</html>

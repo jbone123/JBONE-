@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>响应</title>
+</head>
+<body>
+    <!-- <div id='app'>{{arr[2]}}</div> -->
+    <!-- v-for 解决循环问题  更高效  会复用原有的结构 -->
+    <div id='app'>
+        <!-- 要循环谁就在谁的身上加上v-for属性 最好用in-->
+        <ul>
+            <!-- <li v-for="(fruits, index) in fruit">{{index+1+'.'}}{{fruits.name}}</li> -->
+            <li v-for="(fruits, index) in fruit"> 
+                {{index+1+'.'}}{{fruits.name}} 
+                <ul >
+                    <li v-for="(fruitsColor, ChildIndex) in fruits.color">
+                        {{index+1}}. {{ChildIndex+1}}{{fruitsColor}}
+                    </li>
+                </ul>
+            </li>
+            <!-- <li v-for="(fruits,index) of fruit">{{index+1}}</li> -->
+        </ul>
+        <div v-for="v in 'aaaa'">{{v}}</div>
+        <div v-for="v in 20">{{v}}</div>
+        <div v-for="(value,key,index) in obj">{{index}}:{{key}}:{{value}}</div>
+    </div>
+
+</body>
+<script src='./vue.js'></script>
+<script>
+  
+    let vm = new Vue({
+        el:'#app',
+        data: { //data当中的数据会被vm所代理
+           fruit: [
+                {name:'香蕉', color:['green', 'yellow']},
+                {name: '桔子', color:['yellow', 'red']}, 
+                {name:'西瓜',color:['pink']}
+            ],
+            obj: {name:' jbone', age: '11', addres: 'xxoo'}
+        }
+    }) 
+    
+     
+</script>
+</html>

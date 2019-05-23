@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch</title>
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <div id="app" >
+        <input type="text" placeholder="firstname" v-model="firstname"><br />
+        <input type="text" placeholder="lastname" v-model="lastname">
+        <hr/>
+        {{fullname}}
+    </div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    /*
+    *  watch: 监听一个函数，负责内部源数据的值
+        // computed VS watch  计算由于监听属性  代码量减少 初始值减少
+
+    */
+    let vm= new Vue({
+        el: "#app",
+        data: {
+           firstname: '',
+           lastname: '',
+        },
+        computed: {
+            fullname(){
+                return this.firstname + this.lastname;
+            }
+        }
+        // watch: {
+        //     firstname(newVal,oldVal){
+        //         console.log(newVal,'newVal',oldVal,'oldVal');
+        //         this.fullname =newVal + this.lastname; 
+        //     },
+        //     lastname(newVal,oldVal){
+        //         console.log(newVal,'newVal',oldVal,'oldVal');
+        //         this.fullname=this.firstname+ newVal
+        //     }
+        // }
+        
+    })
+
+    
+</script> 
+</html>

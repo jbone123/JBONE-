@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算属性computed</title>
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <div id="app" >
+            {{reverseMessage}}  
+            <hr />
+            {{reserveqqq}}
+    </div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    /*
+    *  计算属性：对于任何复杂逻辑都应该使用计算属性--表明并不是所有情况都用计算属性
+    */
+    let vm= new Vue({
+        el: "#app",
+        data: {
+           message:'hello vue'
+        },
+        computed: {  //computed
+            aDouble(){
+                return this.a*2
+            },
+            aPlus:{
+                get(){
+                    return this.a+1
+                },
+                set(v){
+                    this.a=v-1
+                }
+            },
+            
+            reserveqqq(){
+                return this.message.split('').reverse().join('-')
+            },
+            reverseMessage(){
+                return this.message.split('').reverse().join('+')
+            }
+        },
+        
+    })
+
+    
+</script> 
+</html>

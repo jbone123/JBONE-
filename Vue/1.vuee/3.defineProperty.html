@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" v-model="msg" id='input'>
+</body>
+<script>
+    // 双向绑定简易实现
+    let obj = {}
+    let temp={}  //temp代理obj干活了
+    Object.defineProperty(obj,'name',{
+        get: function(){  //取obj属性会触发
+            return temp['name']
+        },
+        set: function(val){  //给obj赋值会促发set方法
+            temp['name']=val  // 改变temp结果 
+            input.value=val   //在input中显示 将值付给输入框
+        }
+    })
+    input.value=obj.get  // 页面一加载
+    input.addEventListener('input',function(){
+        obj.name=this.value // 输入页面内容时候调用set方法
+    })
+
+
+    // let obj={}
+    // Object.defineProperty(obj,'name',{
+    //     configurable:false,  //1.是否可配置  是否可删除
+    //     writable: false,   //2. 能否给obj属性赋值
+    //     enumerable:false,    // 3.可枚举
+    //     value:1
+    // })
+    
+    // delete obj.name //1.
+    // obj.name=8888; //2
+    // for(let key in obj){   //3
+    //     console.log(key);
+    // }
+</script>
+</html>

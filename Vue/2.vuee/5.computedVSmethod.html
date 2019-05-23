@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算属性比较方法</title>
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <div id="app" >
+        {{message}}
+        <hr/>
+        <button @click='reversae'> 翻转字符串</button>
+        <button @click='reversae'> 翻转字符串</button>
+        <button @click='reversae'> 翻转字符串</button>
+        <hr />
+        {{reverseMessage}}  
+        {{reverseMessage}}  
+        {{reverseMessage}}  
+            
+            
+    </div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    /*
+    *  计算属性：对于任何复杂逻辑都应该使用计算属性--表明并不是所有情况都用计算属性
+    // 计算属性由于方法--特定条件下
+            只要数据源不变，计算属性就不会一直调用，而方法调用一次就执行一次
+    */
+    let vm= new Vue({
+        el: "#app",
+        data: {
+           message:'hello vue'
+        },
+        methods: {
+            reversae(){
+                console.log('methods')
+                this.message.split().reverse().join('-')
+            }
+
+        },
+        computed: {  //computed
+            reverseMessage(){
+                console.log('computed')
+                return this.message.split('').reverse().join('+')
+            }
+        },
+        
+    })
+
+    
+</script> 
+</html>

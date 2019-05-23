@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件</title>
+</head>
+<body>
+    <!-- 所有绑定的方法都是window上的 -->
+<div onclick="fn()" id="btn">点我</div>
+</body>
+<!-- <script src='./vue.js'></script> -->
+<script>
+    // (function(){
+        function fn(){
+            alert(1)
+        } 
+        console.log(btn.onclick)
+    // })()
+</script>
+</html>

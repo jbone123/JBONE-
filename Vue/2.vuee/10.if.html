@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-if</title>
+    <style>
+       .active{
+           color: red;
+       }
+       .test{
+           font-weight: 600;
+       }
+    </style>
+</head>
+
+<body>
+    <!-- v-if v-else-if  v-else -->
+    <!-- v-if在template使用--选项卡
+    当v-for和v-if一起时候v-for具有更高优先级
+    -->
+    <div id="app" >
+        <button @click="changeIndex(0)">000</button>
+        <button @click="changeIndex(1)">111</button>
+        <button @click="changeIndex(2)">222</button>
+        <button @click="changeIndex(3)">333</button>
+        <template>
+            <div v-if="currentIndex == 0">
+                第0个
+            </div>
+        </template>
+        <template>
+            <div v-else-if="currentIndex == 1">
+                第1个
+            </div>
+        </template>
+        <template>
+            <div v-else-if="currentIndex == 2">
+                第2个
+            </div>
+        </template>
+        <template>
+            <div v-else="currentIndex == 3">
+                第3个
+            </div>
+        </template>
+    </div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+   // class语法规则数组和对象
+    let vm= new Vue({
+        el: "#app",
+        data: {
+            currentIndex: 0
+        },
+       methods: {
+        changeIndex(index){
+            this.currentIndex = index
+        }
+       },
+        
+    })
+
+    
+</script> 
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch</title>
+    <style>
+       .active{
+           color: red;
+       }
+       .test{
+           font-weight: 600;
+       }
+    </style>
+</head>
+
+<body>
+    <div id="app" >
+        <div :class="{active:flag, test:flag}">vue的class的对象写法</div>
+        <hr/>
+        <div :class="[class1,class2]">vue的class的数组写法</div>
+    </div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+   // class语法规则数组和对象
+    let vm= new Vue({
+        el: "#app",
+        data: {
+           flag: true,
+           class1:{
+               active: false
+           },
+           class2:{
+               test: true
+           },
+        },
+       
+        
+    })
+
+    
+</script> 
+</html>

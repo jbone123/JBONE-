@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>响应</title>
+</head>
+<body>
+    <div id='app'>{{a.school}}</div>
+</body>
+<script src='./vue.js'></script>
+<script>
+    // 引入vue后会白给你一个vue构造函数
+    //vue会循环data中的数据(数据劫持), 依次增加getter和setter 
+    let vm = new Vue({
+        el:'#app',
+        data: { //data当中的数据会被vm所代理
+            msg:'没事干', // 可以通过vm.msg渠道对应的内容
+            // inpu tValue:'iiiiii',
+            p: '<p>hello</p>',
+            a: {school: ''},  // 1
+            
+        }
+    }) 
+    // 使用变量时， 先要初始化 否则新加的属性不会导致页面刷新
+    //2 $set给属性添加新的属性和值
+    vm.$set(vm.a,'ID','2019')  //此方法给对象添加响应式的
+    //3. 替换原对象
+    vm.a ={school: '姜氏集团', age: 27, address: 'xxoo'}
+     
+</script>
+</html>

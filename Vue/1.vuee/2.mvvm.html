@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- 小胡子语法 说白了就是模板引擎 表达式 可以放赋值 取值 三元-->
+        <!-- 表单元素 -->
+        <!-- vue指令 direactive 只是dom上的行间属性，vue富裕这类属性一定意义  来实现特殊的功能 所有指令都已v-开头-->
+        <!-- input vlaue属性默认情况下会被vue忽律掉  selected  checked都没有意义-->
+        <!-- v-modal 双向绑定 -->
+        <!-- js应该放在最下面，页面一进入先把dom渲染出来，然后再js -->
+        <input type="text" v-model="msg">
+        <!-- 可以看到{{}} -->
+        <!-- {{msg}} -->
+        <!-- 解决上面方案 v-text防止大括号{{}}出现在页面上-->
+        <div v-text="msg"></div>
+    </div>
+</body>
+<script src='./vue.js'></script>
+<script>
+    // 引入vue后会白给你一个vue构造函数
+    let vm = new Vue({
+        el:'#app',
+        data: { //data当中的数据会被vm所代理
+            msg:'没事干', // 可以通过vm.msg渠道对应的内容
+            // inpu tValue:'iiiiii',
+        }
+    }) // Object.defineProperty
+</script>
+</html>
