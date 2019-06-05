@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>cart</title>
+    <title>cart购物车</title>
     <style>
         [v-cloak]{display: none !important;}
     </style>
@@ -13,7 +13,10 @@
 <body>
     
 <div id="app" v-cloak>
-   
+   <!-- v-modal.number让输入框的值变成数字类型  .lazy当输入框失去焦点时候更新数据 -->
+   <input type="number">
+   <!-- 过滤器原数据不变的情况下，只是改变显示的效果 -->
+   {{33.42 * 4 | toFixed(2)}}
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script src="node_modules/axios/dist/axios.js"></script>
@@ -21,17 +24,49 @@
     let vm= new Vue({
         el: "#app",
         //专门用来发送ajax请求的方法
+        filters :{  //可以有好的自定义的过滤器
+            toFixed(input,param1 ){  //this指向window
+                // return  input.toFixed(2)
+                return  '$'+input.toFixed(param1)  //param1保留几位  input代表管道符前面的内容
+
+            }
+        },
         created(){ //数据被初始化后会调用   ，this指向也是vm实例 钩子函数
-            axios.get('./carts.json').then(res=>{
-                console.log(res,'res');
-            },err=>{
-                
-            })
+            //promise解决回调问题，
+            
         },
         data:{
             products: [],
         },    
-           
+        methods: {
+            getData(){
+                axios.get('./carts.json').then(res=>{
+                console.log(res,'res');
+                this.products=res.data
+                // this.checkOne();//数据都获取完成后给checkAll赋予默认值  
+            },err=>{
+
+            })
+            },
+            //删除  不要有splice语法 性能不好
+            // remove(p){  //p是{} 
+            //     this.products == this.products.filter(item=>item!==p)
+            // }
+
+            // click点击时拿到当前状态  change 可以保证只当值变化后菜触发函数 
+            // 实现全选和反选
+            // 思路： forEach每一个选项的checked变为true  就行
+
+            // this.products.forEach(item=>item.isSlect = this.checkAll)
+            // 只选一个的话全选√消失
+            //  
+
+
+
+            // 页面{{sum()}}  不会缓存上一次的结果 computed可以解决这个问题
+
+
+        }, 
         
     })
 </script> 

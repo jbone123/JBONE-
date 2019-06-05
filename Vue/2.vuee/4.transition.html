@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>transition动画</title>
+    <style>
+        .love{width: 400px; height: 400px; background: red; color: black;}
+        .v-enter{opacity: 0;}
+        .v-enter-active{transition: 1s linear}
+        .v-leave-active{opacity: 0;transition: 1s linear}
+        .jb-enter{opacity: 0;}
+        .jb-enter-active{transition: 1s linear}
+        .jb-leave-active{opacity: 0;transition: 1s linear}
+    </style>
+</head>
+
+<body>
+    
+    <div id="app" v-cloak>
+        <button @click="flag=!flag">切换</button>
+        <button @click="flag2=!flag2">切换</button>
+        <!-- v-if dom(当数据一开始就确定下来，如果if不通过内部指令不会再执行) v-show  样式(频繁切换dom) -->
+        <!-- vue自定义（组件）  -->
+        <transition>
+            <div v-show="flag" class='love'>我爱你</div>
+        </transition>
+        <transition name='jb'>
+                <div v-show="flag2" class='love'>我爱你22222</div>
+        </transition>
+        
+    </div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm= new Vue({
+        el:"#app",
+        data:{
+            flag: true,
+            flag2: true,
+        }
+        
+    })
+</script> 
+</body>
+</html>

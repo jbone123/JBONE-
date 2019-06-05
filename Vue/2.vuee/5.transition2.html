@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./node_modules/animate.css/animate.css">
+    <title>transition动画</title>
+    <style>
+        .love{width: 400px; height: 400px; background: red; color: black;}
+        
+    </style>
+</head>
+
+<body>
+    
+    <div id="app" v-cloak>
+        <button @click="flag=!flag">切换</button>
+        <input type="text" v-model="query">
+        <!-- <transition enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+            <div v-show="flag" class='love'>我爱你</div>
+        </transition> -->
+        <transition-group enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+            <div v-for="(a, index) in newArr" :key="index" class="love">{{a}}</div>
+        </transition-group>
+        
+    </div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm= new Vue({
+        el:"#app",
+        computed: {
+            newArr(){
+                return  this.arr.filter(item=>item==this.query);
+            }
+        },
+        data:{
+            flag: true,
+            arr:[1,2,3,4,5],
+            query: '',
+        }
+        
+    })
+</script> 
+</body>
+</html>
